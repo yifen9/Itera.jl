@@ -1,6 +1,6 @@
 name = "Itera"
 uuid = "e78498a0-16ff-4b72-908b-8a2b3cef9703"
-authors = ["Clare <leeantoyf@gmail.com>"]
+authors = ["yifen9 <yifen9@yandex.com>"]
 version = "0.1.0"
 
 [deps]
