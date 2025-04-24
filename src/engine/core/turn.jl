@@ -20,7 +20,7 @@ function _effect_apply_and_emit!(state::Game, stepname::Symbol)
 end
 
 """
-`execute!(state::Game, actions::Vector{Pipeline.Step};
+`execute!(state::Game, action_list::Vector{Pipeline.Step};
           minimum::Int=0, maximum::Int=1, strategy::Symbol=:random) -> Game`
 
 Execute one full turn for the current player:
@@ -32,7 +32,7 @@ Execute one full turn for the current player:
 """
 function execute!(
     state::Game,
-    actions::Vector{Pipeline.Step};
+    action_list::Vector{Pipeline.Step};
     minimum::Int = 0,
     maximum::Int = 1,
     strategy::Symbol = :random,
@@ -44,7 +44,7 @@ function execute!(
     Effect.apply!(state)
 
     # --- Action selection and execution ---
-    ctx = Choice.Context(actions, state, state.rng;
+    ctx = Choice.Context(action_list, state, state.rng;
                          minimum = minimum,
                          maximum = maximum,
                          on_choice_event = :on_action_chosen)
