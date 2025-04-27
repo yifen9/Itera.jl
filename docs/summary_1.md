@@ -98,8 +98,3 @@ state.phase_group = Flow([phase_flow])
 flow_execute!(state.phase_group, state, state.rng)
 flow_execute!(state.phase_group, state, state.rng)
 ```
-
----
-
-*Use this summary to quickly rehydrate the engine context and resume development!*
-

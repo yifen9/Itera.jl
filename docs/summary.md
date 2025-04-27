@@ -102,8 +102,3 @@ Itera.jl
 - **P5**: Multi‑game support (Pokémon, Sakura Arms, MtG)
 - **P6**: Service abstraction (Elixir/Gleam microservices)
 - **P7**: Public DSL editor, strategy diff UI
-
----
-
-*Use this document to bootstrap new conversations about Itera—just paste and go!*
-
