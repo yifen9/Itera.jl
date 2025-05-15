@@ -9,7 +9,7 @@ using Itera
         ctx = Itera.Choice.Context(options, dummy_state, dummy_state.rng; minimum=1, maximum=2)
         @test ctx.minimum == 1
         @test ctx.maximum == 2
-        @test length(ctx.option_tree.member_list) == 3
+        @test length(ctx.option_tree.child_list) == 3
         @test ctx.history == []
     end
 

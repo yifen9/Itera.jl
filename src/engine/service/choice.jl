@@ -39,7 +39,7 @@ mutable struct Context
         group = TreeCycle.Group([TreeCycle.Leaf(x) for x in options])
         return new(group, [], minimum, maximum, state, rng,
                    on_complete, on_choice_event,
-                   group.index_current, true)
+                   group.child_index_current, true)
     end
 end
 
@@ -83,7 +83,7 @@ Handles event emission, result recording, and loop termination.
 function step!(ctx::Context; strategy::Symbol = :random)::StepResult
     @assert haskey(_STRATEGY_LIST, strategy) "Unknown strategy: $strategy"
 
-    candidate = TreeCycle.current_get!(ctx.option_tree)
+    candidate = TreeCycle.current_get(ctx.option_tree)
     result = _STRATEGY_LIST[strategy](candidate, ctx)
 
     if result.selection !== nothing
@@ -95,7 +95,7 @@ function step!(ctx::Context; strategy::Symbol = :random)::StepResult
 
     TreeCycle.advance!(ctx.option_tree)
 
-    is_looped = (!ctx.is_initial && ctx.option_tree.index_current == ctx.index_start)
+    is_looped = (!ctx.is_initial && ctx.option_tree.child_index_current == ctx.index_start)
     ctx.is_initial = false
 
     done = length(ctx.history) >= ctx.maximum ||

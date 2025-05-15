@@ -72,12 +72,12 @@ end
 Execute all steps in a TreeCycle group in current cycle order.
 """
 function flow_execute!(flow::TreeCycle.Group, state::Game, rng::AbstractRNG)
-    index_start = flow.index_current
+    index_start = flow.child_index_current
     is_initial = true
 
-    while is_initial || flow.index_current != index_start
+    while is_initial || flow.child_index_current != index_start
         is_initial = false
-        step = TreeCycle.current_get!(flow)
+        step = TreeCycle.current_get(flow)
         step_execute!(step, state, rng)
         TreeCycle.advance!(flow)
     end

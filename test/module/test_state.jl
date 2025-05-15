@@ -8,8 +8,8 @@ using Itera
         actions = Function[(_, _)->nothing, (_, _)->nothing, (_, _)->nothing]
         state = Itera.State.from_player_and_action(players, actions)
         @test state isa Itera.State.Game
-        @test length(state.player_group.member_list) == 3
-        @test length(state.phase_group.member_list) == 3
+        @test length(state.player_group.child_list) == 3
+        @test length(state.phase_group.child_list) == 3
     end
 
     @testset "State accessors" begin

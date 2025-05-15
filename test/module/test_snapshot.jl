@@ -12,7 +12,7 @@ using UUIDs
     @testset "snapshot returns deepcopy" begin
         snap = Itera.Snapshot.snapshot(state)
         @test snap !== state
-        @test snap.player_group.member_list[1].value == state.player_group.member_list[1].value
+        @test snap.player_group.child_list[1].value == state.player_group.child_list[1].value
     end
 
     @testset "save and load snapshot (JLSO)" begin
@@ -21,7 +21,7 @@ using UUIDs
         loaded = Itera.Snapshot.load(tmpfile)
 
         @test loaded !== state
-        @test loaded.player_group.member_list[1].value == "a"
+        @test loaded.player_group.child_list[1].value == "a"
         @test typeof(loaded) == typeof(state)
     end
 

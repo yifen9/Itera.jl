@@ -8,11 +8,11 @@ using Itera
         leaf2 = Itera.Participant.Leaf("Bob")
         group = Itera.Participant.Group([leaf1, leaf2])
 
-        @test Itera.Participant.current_get!(group) == "Alice"
+        @test Itera.Participant.current_get(group) == "Alice"
         Itera.Participant.advance!(group)
-        @test Itera.Participant.current_get!(group) == "Bob"
+        @test Itera.Participant.current_get(group) == "Bob"
         Itera.Participant.advance!(group)
-        @test Itera.Participant.current_get!(group) == "Alice"
+        @test Itera.Participant.current_get(group) == "Alice"
     end
 
     @testset "Participant tree nested operations" begin
@@ -22,13 +22,13 @@ using Itera
         leaf3 = Itera.Participant.Leaf("C")
         outer = Itera.Participant.Group([inner, leaf3])
 
-        @test Itera.Participant.current_get!(outer) == "A"
+        @test Itera.Participant.current_get(outer) == "A"
         Itera.Participant.advance!(outer)
-        @test Itera.Participant.current_get!(outer) == "B"
+        @test Itera.Participant.current_get(outer) == "B"
         Itera.Participant.advance!(outer)
-        @test Itera.Participant.current_get!(outer) == "C"
+        @test Itera.Participant.current_get(outer) == "C"
         Itera.Participant.advance!(outer)
-        @test Itera.Participant.current_get!(outer) == "A"
+        @test Itera.Participant.current_get(outer) == "A"
     end
 
     @testset "Participant reset!" begin
@@ -37,7 +37,7 @@ using Itera
         group = Itera.Participant.Group([leaf1, leaf2])
         Itera.Participant.advance!(group)
         Itera.Participant.reset!(group)
-        @test Itera.Participant.current_get!(group) == "X"
+        @test Itera.Participant.current_get(group) == "X"
     end
 
 end

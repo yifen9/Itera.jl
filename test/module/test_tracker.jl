@@ -25,7 +25,7 @@ using Itera
         
         # Ensure snapshot is deepcopied (not the same object)
         @test snap !== state
-        @test snap.player_group.member_list[1].value == "a"
+        @test snap.player_group.child_list[1].value == "a"
     end
 
     @testset "Tracker clear!" begin
