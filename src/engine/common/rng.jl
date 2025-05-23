@@ -1,12 +1,3 @@
-"""
-Module `RNG` provides unified RNG services for turn-based games.
-
-Exports:
-- `default`: create or get default RNG instance
-- `shuffle`: return a shuffled copy of a collection
-- `sample`: draw elements from a collection (with or without replacement)
-- `seed!`: reseed a MersenneTwister RNG for reproducibility
-"""
 module RNG
 
 export default, shuffle, sample, seed!
@@ -21,7 +12,7 @@ Get a default RNG instance:
 - With `seed`: returns a new `MersenneTwister(seed)` for deterministic sequences.
 """
 default(; seed::Union{Int,Nothing}=nothing) =
-    seed === nothing ? Random.default_rng() : MersenneTwister(seed)
+    (seed === nothing) ? Random.default_rng() : MersenneTwister(seed)
 
 """
 shuffle(rng::AbstractRNG, collection::AbstractVector) -> Vector{T}
