@@ -1,13 +1,11 @@
 module Itera
 
-export TreeStateMachine, RNG
+export Engine
 
-include(joinpath("engine", "tsm", "TreeStateMachine.jl"))
+include(joinpath("engine", "engine.jl"))
 
-include(joinpath("engine", "common", "rng.jl"))
-
-include(joinpath("engine", "service", "participant.jl"))
-include(joinpath("engine", "service", "phase.jl"))
+# include(joinpath("engine", "service", "participant.jl"))
+# include(joinpath("engine", "service", "phase.jl"))
 
 # include("engine/core/state.jl")
 

@@ -1,5 +1,5 @@
 using Test
-using Itera
+using Itera.Engine.Common
 
 @testset "RNG" begin
     
