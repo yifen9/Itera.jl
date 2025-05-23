@@ -16,6 +16,8 @@ jobs:
           submodules: recursive
       - name: Update TSM submodule
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git submodule foreach 'git fetch origin; git checkout main; git pull'
           git add src/engine/tsm
           git commit -m "chore: bump TSM submodule to latest"
