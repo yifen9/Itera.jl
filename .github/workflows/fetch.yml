@@ -16,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           submodules: recursive
         
       - name: Configure Git
@@ -29,7 +30,7 @@ jobs:
           git submodule update --init --recursive
 
           cd src/engine/tsm
-          git fetch origin
+          git fetch --prune
           git checkout main-src
           git pull   origin main-src
 
@@ -45,4 +46,4 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main-src
+          branch: main
