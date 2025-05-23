@@ -36,11 +36,7 @@ jobs:
 
           cd ../..
           git add src/engine/tsm
-          if ! git diff --cached --exit-code; then
-            git commit -m "chore(tsm): bump submodule to TSM main-src"
-          else
-            echo "TSM already at main-src tip, no changes"
-          fi
+          git commit -m "chore(tsm): bump submodule to TSM main-src"
 
       - name: Push
         uses: ad-m/github-push-action@v0.8.0
