@@ -29,7 +29,7 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --recursive
 
-          pushd src/engine/tsm
+          pushd src/engine/common/tsm
 
           git fetch origin --prune
           git checkout main-src
