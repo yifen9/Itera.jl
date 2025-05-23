@@ -18,15 +18,27 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Update TSM submodule
+      - name: Fetch and Checkout main-src
+        run: |
+          git fetch origin main-src:refs/remotes/origin/main-src
+          git checkout -B main-src origin/main-src
+        
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git submodule foreach 'git fetch origin; git checkout main; git pull'
-          git add src/engine/tsm
-          git commit -m "chore: bump TSM submodule to latest"
 
-      - name: Push changes
+      - name: Update Submodule TSM
+        run: |
+          git submodule foreach 'git checkout main && git pull origin main'
+          git add src/engine/tsm
+          if ! git diff --cached --exit-code; then
+            git commit -m "chore: bump TSM submodule to latest"
+          else
+            echo "No changes in TSM submodule"
+          fi
+
+      - name: Push
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
