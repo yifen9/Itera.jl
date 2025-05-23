@@ -29,12 +29,14 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --recursive
 
-          cd src/engine/tsm
-          git fetch --prune
-          git checkout main-src
-          git pull   origin main-src
+          pushd src/engine/tsm
 
-          cd ../..
+          git fetch origin --prune
+          git checkout main-src
+          git pull origin main-src
+
+          popd
+
           git add src/engine/tsm
           git commit -m "chore(tsm): bump submodule to TSM main-src"
 
