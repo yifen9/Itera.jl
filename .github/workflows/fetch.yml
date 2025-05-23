@@ -16,7 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: main-src
           submodules: recursive
+
       - name: Update TSM submodule
         run: |
           git config user.name "github-actions[bot]"
@@ -24,6 +26,7 @@ jobs:
           git submodule foreach 'git fetch origin; git checkout main; git pull'
           git add src/engine/tsm
           git commit -m "chore: bump TSM submodule to latest"
+          
       - name: Push changes
         uses: ad-m/github-push-action@v0.8.0
         with:
