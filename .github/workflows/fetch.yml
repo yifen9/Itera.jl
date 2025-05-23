@@ -1,0 +1,25 @@
+name: fetch
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Update TSM submodule
+        run: |
+          git submodule foreach 'git fetch origin; git checkout main; git pull'
+          git add src/TSM
+          git commit -m "chore: bump TSM submodule to latest"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

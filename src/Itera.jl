@@ -1,5 +1,7 @@
 module Itera
 
+include(joinpath("engine", "tsm", "TreeStateMachine.jl"))
+
 # Core shared
 include("engine/common/tree_cycle.jl")
 include("engine/common/rng.jl")
