@@ -16,8 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main-src
-          submodules: true
+          submodules: recursive
 
       - name: Update TSM submodule
         run: |
