@@ -2,7 +2,7 @@ name: fetch
 on:
   push:
     branches:
-      - main
+      - develop
   schedule:
     - cron: '0 0 * * *'
 
@@ -37,12 +37,12 @@ jobs:
 
           popd
 
-          git add src/engine/tsm
+          git add src/engine/common/tsm
           git commit -m "chore(tsm): bump submodule to TSM main-src"
 
       - name: Push
         uses: ad-m/github-push-action@v0.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: develop
           force: true
