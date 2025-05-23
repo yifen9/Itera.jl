@@ -17,11 +17,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Fetch and Checkout main-src
-        run: |
-          git fetch origin main-src:refs/remotes/origin/main-src
-          git checkout -B main-src origin/main-src
         
       - name: Configure Git
         run: |
@@ -30,12 +25,20 @@ jobs:
 
       - name: Update Submodule TSM
         run: |
-          git submodule foreach 'git checkout main && git pull origin main'
+          git submodule sync --recursive
+          git submodule update --init --recursive
+
+          cd src/engine/tsm
+          git fetch origin
+          git checkout main-src
+          git pull   origin main-src
+
+          cd ../..
           git add src/engine/tsm
           if ! git diff --cached --exit-code; then
-            git commit -m "chore: bump TSM submodule to latest"
+            git commit -m "chore(tsm): bump submodule to TSM main-src"
           else
-            echo "No changes in TSM submodule"
+            echo "TSM already at main-src tip, no changes"
           fi
 
       - name: Push
