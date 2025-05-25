@@ -1,4 +1,4 @@
-module Pipeline
+module Assembler
 
 export Step, Flow, step_execute!, flow_execute!, step_current_name
 

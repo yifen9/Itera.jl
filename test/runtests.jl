@@ -12,6 +12,10 @@ using Itera
             @testset "Common" begin
                 include(joinpath("module", "engine", "common", "rng.jl"))
             end
+
+            @testset "State" begin
+                include(joinpath("module", "engine", "state", "state.jl"))
+            end
         end
         # include("module/test_rng.jl")
         # include("module/test_participant.jl")

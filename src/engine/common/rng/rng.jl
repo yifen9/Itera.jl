@@ -1,6 +1,6 @@
 module RNG
 
-export default, seed!, shuffle, sample
+export AbstractRNG, default, seed!, shuffle, sample
 
 using Random
 
